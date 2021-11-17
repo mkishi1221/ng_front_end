@@ -1,12 +1,22 @@
 <template>
-  <div class="rounded-md p-2 h-9 max-w-max" :style="chipStyle">
-    <span :style="textColor">{{ label }}</span>
+  <div class="relative inline-block">
+    <t-menu context :menu-entries="menuEntries">
+      <template v-slot:activator>
+        <div
+          class="rounded-md px-6 py-2 h-10 max-w-max hover:opacity-75"
+          :style="chipStyle"
+        >
+          <span :style="textColor" class="select-none">{{ label }}</span>
+        </div>
+      </template>
+    </t-menu>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import Lumifier from '~/helper/Lumifier'
+import MenuEntry from "~/classes/MenuEntry";
 
 @Component({
   name: 'TChip',
@@ -22,6 +32,9 @@ export default class TChip extends Vue {
 
   @Prop({ type: Boolean })
   border!: boolean
+
+  @Prop()
+  menuEntries!: MenuEntry[];
 
   // Data
 

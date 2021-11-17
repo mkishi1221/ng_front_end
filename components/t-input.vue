@@ -2,10 +2,10 @@
   <input
     v-model="value"
     class="
-      bg-opacity-40 bg-white
+      bg-white
       rounded-lg
       p-2
-      focus:outline-none focus:ring-2 focus:ring-white
+      focus:outline-none focus:ring-2 focus:ring-gray-200
       placeholder-gray-500
     "
     :placeholder="placeholder"
