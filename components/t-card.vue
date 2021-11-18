@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-white bg-opacity-60 rounded-xl shadow p-4">
-        <div class="mb-4" style="color: #4B4B4B;">
+    <div class="bg-white dark:bg-cardDark bg-opacity-60 rounded-xl shadow-lg pt-3 px-4 pb-4 grid gap-2 my-2">
+        <div class="text-cardTitle dark:text-white">
             <slot name="title" />
         </div>
         <slot name="default" />

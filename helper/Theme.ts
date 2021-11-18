@@ -5,6 +5,7 @@ export default class Theme {
         blacklisted: "#772C27",
         available: "#639071",
         availableDark: "#2B5339",
-        notAvailable: "#805147"
+        notAvailable: "#805147",
+        backgroundChip: "#323B4A"
     }
 }

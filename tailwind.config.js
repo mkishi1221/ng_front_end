@@ -8,10 +8,19 @@ module.exports = {
   ],
   darkMode: "media", // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        cardTitle: "#4b4b4b",
+        cardDark: "#323232",
+        canvas: "#e0e0e0",
+        canvasDark: "#222222"
+      }
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms")
+  ],
 }

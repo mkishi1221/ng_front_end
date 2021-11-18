@@ -1,19 +1,16 @@
 <template>
   <div class="container mx-auto px-14 xl:px-0 pt-2">
     <div class="flex justify-between items-center">
-      <span class="text-2xl">{{ title }}</span>
+      <span class="text-2xl text-black dark:text-white">{{ title }}</span>
       <div class="relative inline-block">
         <t-menu :menu-entries="menuEntries">
           <template v-slot:activator>
-            <more-horizontal-icon class="cursor-pointer" size="35" />
+            <more-horizontal-icon class="cursor-pointer text-black dark:text-white" size="35" />
           </template>
         </t-menu>
       </div>
     </div>
-    <t-card class="mt-2">
-      <template v-slot:title> {{ cardTitle }} </template>
-      <slot name="cardContent" />
-    </t-card>
+    <slot name="cards" />
   </div>
 </template>
 
@@ -32,9 +29,6 @@ export default class TSection extends Vue {
   // Props
   @Prop({ type: String })
   title!: string;
-
-  @Prop({ type: String })
-  cardTitle!: string;
 
   @Prop()
   menuEntries!: MenuEntry[];
