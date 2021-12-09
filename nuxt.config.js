@@ -19,7 +19,12 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    "~/plugins/ts-plugins.ts"
   ],
+
+  router: {
+    middleware: ["auth"]
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -38,10 +43,29 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth-next'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : '/api'
+  },
+
+  // auth0 strategy: https://auth.nuxtjs.org/providers/auth0
+  auth: {
+    strategies: {
+      auth0: {
+        domain: 'dev-vxtacezw.eu.auth0.com',
+        clientId: 'WQXqR3LFHXLjtujBIU8U4eWR0qNv4OhG',
+        audience: 'https://identity-2-brand.com/api'
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: '/callback',
+    }
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

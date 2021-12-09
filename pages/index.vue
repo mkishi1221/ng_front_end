@@ -15,6 +15,7 @@ import KeywordSection from "~/pages/sections/keyword.vue";
 import AlgorithmSection from "~/pages/sections/algorithm.vue"
 import NameSection from "~/pages/sections/name.vue";
 import DomainSection from "~/pages/sections/domain.vue"
+import AlgorithmService from '~/services/algorithmService';
 
 @Component({
   name: 'LandingPage',
