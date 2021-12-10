@@ -1,14 +1,13 @@
 <template>
-  <textarea
+  <input
     :value="value"
     class="
-      bg-white
-      rounded-lg
-      p-2
-      focus:outline-none focus:ring-2 focus:ring-gray-200
-      placeholder-gray-500
+      bg-transparent
+      focus:outline-none
+      text-white
+      placeholder-white
+      text-xs
     "
-    :rows="rows"
     :placeholder="placeholder"
     @change="change"
   />
@@ -18,10 +17,10 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'TTextarea',
+  name: 'ClearInput',
   components: {},
 })
-export default class TTextarea extends Vue {
+export default class ClearInput extends Vue {
   // Props
   @Prop()
   value!: string | number;
@@ -29,10 +28,7 @@ export default class TTextarea extends Vue {
   @Prop({ type: String })
   placeholder!: string;
 
-  @Prop({ type: Number, default: 3 })
-  rows!: number;
-
-  @Prop({ type: Function, default: () => {} })
+  @Prop({ type: Function })
   change!: Function;
 
   // Data

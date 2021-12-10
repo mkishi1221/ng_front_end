@@ -16,6 +16,9 @@ module.exports = {
         canvasDark: "#222222"
       }
     },
+    fontFamily: {
+      sans: ['"Helvetica Neue"', 'sans-serif']
+    }
   },
   variants: {
     extend: {},

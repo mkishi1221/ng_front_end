@@ -13,9 +13,16 @@
       z-50
     "
   >
-    <span class="text-black dark:text-white text-2xl ml-8"
-      >identity -> brand</span
-    >
+    <div class="flex flex-col">
+      <span class="text-black dark:text-white text-2xl ml-8"
+        >identity -> brand</span
+      >
+      <clear-input
+        :placeholder="projectName"
+        class="ml-8"
+        :change="setProjectName"
+      />
+    </div>
     <div
       class="text-black dark:text-white flex justify-evenly items-center"
       style="width: 60vw"
@@ -34,7 +41,8 @@
 </template>
 
 <script lang='ts'>
-import { Component, Prop, Vue } from 'nuxt-property-decorator';
+import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator';
+import WebsocketService from '~/services/websocketService';
 
 @Component({
   name: 'AppBar',
@@ -46,9 +54,22 @@ export default class AppBar extends Vue {
   // Hook Callbacks
   // Refs
   // Getters
+  get projectName() {
+    return this.$store.state.projectConf.projectName ?? 'SET A PROJECTNAME';
+  }
   // Setters
   // Watchers
   // Logic
+  async setProjectName(evt: any) {
+    this.$store.commit('projectConf/setProjectName', evt.target.value);
+
+    if (!!evt && evt !== 'SET A PROJECT NAME') {
+      WebsocketService.reconnect({
+        name: this.$auth.user!.email as string,
+        project: evt.target.value,
+      });
+    }
+  }
 }
 </script>
 

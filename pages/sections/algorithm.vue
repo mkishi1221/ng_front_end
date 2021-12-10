@@ -16,7 +16,9 @@
           >
             <div class="flex items-center">
               <t-chip :label="algorithm.keyword_type_1" color="#ffffffaa" />
-              <span class="mx-4 text-white select-none">{{ algorithm.joint }}</span>
+              <span class="mx-4 text-white select-none">{{
+                algorithm.joint
+              }}</span>
               <t-chip :label="algorithm.keyword_type_2" color="#ffffffaa" />
             </div>
           </t-chip>
@@ -27,10 +29,12 @@
 </template>
 
 <script lang='ts'>
-import { Component, Prop, Vue } from 'nuxt-property-decorator';
+import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator';
 import { PlusIcon } from 'vue-feather-icons';
+import Algorithm from '~/classes/Algorithm';
 import Theme from '~/helper/Theme';
 import AlgorithmService from '~/services/algorithmService';
+import WebsocketService from '~/services/websocketService';
 
 @Component({
   name: 'AlgorithmSection',
@@ -41,18 +45,32 @@ import AlgorithmService from '~/services/algorithmService';
 export default class AlgorithmSection extends Vue {
   // Props
   // Data
-  algorithms: Algorithm[] = [];
   // Hook Callbacks
-  async fetch() {
-    this.algorithms = await AlgorithmService.getAlgorithms();
-  }
   // Refs
   // Getters
+  get algorithms(): Algorithm[] {
+    return this.$store.state.algorithms.algorithms ?? [];
+  }
+  get projectName() {
+    return this.$store.state.projectConf.projectName ?? '';
+  }
   get colors() {
     return Theme.colors;
   }
+  get wsConnected() {
+    return !!this.$store.state.websocketConf.identifier;
+  }
   // Setters
   // Watchers
+  @Watch('wsConnected')
+  async OnProjectChange(change: boolean) {
+    if (change) {
+      this.$store.commit(
+        'algorithms/setAlgorithms',
+        await AlgorithmService.getAlgorithms()
+      );
+    }
+  }
   // Logic
 }
 </script>

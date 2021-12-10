@@ -1,6 +1,6 @@
 <template>
   <input
-    v-model="value"
+    :value="value"
     class="
       bg-white
       rounded-lg
@@ -9,6 +9,7 @@
       placeholder-gray-500
     "
     :placeholder="placeholder"
+    @change="change"
   />
 </template>
 
@@ -26,6 +27,9 @@ export default class TInput extends Vue {
 
   @Prop({ type: String })
   placeholder!: string;
+
+  @Prop({ type: Function, default: () => {} })
+  change!: Function;
 
   // Data
 

@@ -17,14 +17,19 @@
         </div>
       </t-card>
       <t-card>
-          <template v-slot:title>
-              available names
-          </template>
+        <template v-slot:title> available names </template>
+        <div class="flex">
+          <t-chip
+            v-for="(name, i) in names"
+            :key="i"
+            :color="getChipColor()"
+            class="mr-2"
+            :label="name.name"
+          />
+        </div>
       </t-card>
       <t-card>
-          <template v-slot:title>
-              not available names
-          </template>
+        <template v-slot:title> not available names </template>
       </t-card>
     </template>
   </t-section>
@@ -32,6 +37,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'nuxt-property-decorator';
+import Theme from '~/helper/Theme';
 
 @Component({
   name: 'NameSection',
@@ -49,12 +55,21 @@ export default class NameSection extends Vue {
   // Refs
 
   // Getters
+  get names() {
+    return this.$store.state.names.names ?? [];
+  }
+  get colors() {
+    return Theme.colors;
+  }
 
   // Setters
 
   // Watchers
 
   // Logic
+  getChipColor() {
+    return this.colors.backgroundChip;
+  }
 }
 </script>
 
