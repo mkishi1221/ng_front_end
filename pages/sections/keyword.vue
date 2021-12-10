@@ -9,11 +9,11 @@
         <t-input placeholder="Search for something" />
         <div class="flex flex-wrap">
           <t-chip
-            v-for="(p, i) in 20"
+            v-for="(k, i) in keywords"
             :key="i"
             class="mt-2 mr-2"
-            :color="colors.notAvailable"
-            label="cakkeeeee"
+            color="#ffffff"
+            :label="k.keyword"
             :menu-entries="menuEntriesChips"
           />
         </div>
@@ -59,7 +59,9 @@ export default class KeywordSection extends Vue {
   get colors() {
     return Theme.colors;
   }
-
+  get keywords() {
+    return this.$store.state.keywords.keywords ?? [];
+  }
   // Setters
 
   // Watchers
