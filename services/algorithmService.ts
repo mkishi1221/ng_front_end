@@ -1,3 +1,4 @@
+import Algorithm from "~/classes/Algorithm";
 import BaseService from "./baseService";
 
 export default class AlgorithmService {

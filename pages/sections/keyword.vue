@@ -1,21 +1,46 @@
 <template>
-  <t-section
-    title="manage keywords"
-    :menu-entries="menuEntriesOptions"
-  >
+  <t-section title="manage keywords">
     <template v-slot:cards>
       <t-card class="mt-2">
         <template v-slot:title> filter keywords </template>
-        <t-input placeholder="Search for something" />
+        <t-input :value.sync="filter" placeholder="Search for something" />
         <div class="flex flex-wrap">
-          <t-chip
-            v-for="(k, i) in keywords"
-            :key="i"
-            class="mt-2 mr-2"
-            color="#ffffff"
-            :label="k.keyword"
-            :menu-entries="menuEntriesChips"
-          />
+          <t-menu context v-for="(k, i) in keywords" :key="i">
+            <template v-slot:activator>
+              <t-chip
+                :key="i"
+                class="mt-2 mr-2"
+                color="#ffffff"
+                :label="k.keyword"
+              />
+            </template>
+            <t-menu-entry> whitelist </t-menu-entry>
+            <t-menu-entry @click="blacklistKeyword(k)">
+              blacklist
+            </t-menu-entry>
+          </t-menu>
+          <div v-if="keywordsLoading">
+            <t-icon icon="mdi-loading" class="mt-2" spinning />
+          </div>
+        </div>
+      </t-card>
+      <t-card>
+        <template v-slot:title> blacklisted keywords </template>
+        <div class="flex flex-wrap">
+          <t-menu context v-for="(k, i) in blacklistedKeywords" :key="i">
+            <template v-slot:activator>
+              <t-chip
+                :key="i"
+                class="mt-2 mr-2"
+                :color="colors.blacklisted"
+                :label="k.keyword"
+              />
+            </template>
+            <t-menu-entry> remove label </t-menu-entry>
+          </t-menu>
+          <div v-if="blacklistedLoading">
+            <t-icon icon="mdi-loading" class="mt-2" spinning />
+          </div>
         </div>
       </t-card>
     </template>
@@ -23,9 +48,9 @@
 </template>
 
 <script lang='ts'>
-import { Component, Prop, Vue } from 'nuxt-property-decorator';
+import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator';
 import Theme from '~/helper/Theme';
-import MenuEntry from '~/classes/MenuEntry';
+import Keyword from '~/classes/Keyword';
 
 @Component({
   name: 'KeywordSection',
@@ -35,24 +60,7 @@ export default class KeywordSection extends Vue {
   // Props
 
   // Data
-  menuEntriesOptions: MenuEntry[] = [
-    new MenuEntry({
-      text: 'test',
-      callback: () => console.log('djwbakjdbakjwbdjka'),
-    }),
-    new MenuEntry({
-      text: 'test2',
-    }),
-    MenuEntry.DIVIDER,
-    new MenuEntry({
-      text: 'test3',
-    }),
-  ];
-  menuEntriesChips: MenuEntry[] = [
-    new MenuEntry({
-      text: 'hi!',
-    }),
-  ];
+  filter = '';
   // Hook Callbacks
   // Refs
   // Getters
@@ -60,13 +68,36 @@ export default class KeywordSection extends Vue {
     return Theme.colors;
   }
   get keywords() {
-    return this.$store.state.keywords.keywords ?? [];
+    let words = this.$store.state.keywords.keywords ?? [];
+    words = words.filter((w: Keyword) => w.word.includes(this.filter));
+    return words;
+  }
+  get blacklistedKeywords() {
+    return this.$store.state.keywords.blacklisted ?? [];
+  }
+  get keywordsLoading() {
+    return this.$store.state.keywords.loading ?? false;
+  }
+  get blacklistedLoading() {
+    return this.$store.state.keywords.blacklistedLoading ?? false;
+  }
+  get wsConnected() {
+    return !!this.$store.state.websocketConf.identifier;
   }
   // Setters
 
   // Watchers
+  @Watch('wsConnected')
+  async OnProjectChange(change: boolean) {
+    if (change) {
+      this.$store.dispatch('keywords/init');
+    }
+  }
 
   // Logic
+  blacklistKeyword(toBlacklist: Keyword) {
+    this.$store.dispatch('keywords/makeBlacklisted', toBlacklist);
+  }
 }
 </script>
 

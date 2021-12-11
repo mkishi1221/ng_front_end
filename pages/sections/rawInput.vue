@@ -6,7 +6,7 @@
         <t-input class="w-full" placeholder="find" />
       </t-card>
       <t-card>
-        <t-textarea v-model="keywordsAsRawText" :change="addNewKeywords" />
+        <t-textarea :change="addNewKeywords" />
       </t-card>
     </template>
   </t-section>
@@ -15,7 +15,6 @@
 <script lang='ts'>
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator';
 import Keyword from '~/classes/Keyword';
-import KeywordService from '~/services/keywordService';
 
 @Component({
   name: 'RawInputSection',
@@ -36,25 +35,10 @@ export default class RawInputSection extends Vue {
   get projectName() {
     return this.$store.state.projectConf.projectName ?? '';
   }
-  get keywordsAsRawText() {
-    return this.keywords.map((k) => k.keyword).join(' ');
-  }
-  get wsConnected() {
-    return !!this.$store.state.websocketConf.identifier;
-  }
 
   // Setters
 
   // Watchers
-  @Watch('wsConnected')
-  async OnProjectChange(change: boolean) {
-    if (change) {
-      this.$store.commit(
-        'keywords/setKeywords',
-        await KeywordService.getKeywords()
-      );
-    }
-  }
 
   // Logic
   addNewKeywords(evt: any) {
@@ -62,9 +46,7 @@ export default class RawInputSection extends Vue {
     newWords = newWords.filter(
       (w) => !this.$store.getters["keywords/keywordsAsList"].includes(w)
     );
-    console.log(newWords);
-    
-    this.$store.commit('keywords/addNewKeywords', newWords);
+    if (!!newWords.length) this.$store.dispatch('keywords/addNewKeywords', newWords);
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <textarea
-    :value="value"
+    v-model="syncedValue"
     class="
       bg-white
       rounded-lg
@@ -15,7 +15,7 @@
 </template>
 
 <script lang='ts'>
-import { Component, Prop, Vue } from 'nuxt-property-decorator';
+import { Component, Prop, PropSync, Vue } from 'nuxt-property-decorator';
 
 @Component({
   name: 'TTextarea',
@@ -23,8 +23,8 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator';
 })
 export default class TTextarea extends Vue {
   // Props
-  @Prop()
-  value!: string | number;
+  @PropSync("value")
+  syncedValue!: string | number;
 
   @Prop({ type: String })
   placeholder!: string;

@@ -48,9 +48,7 @@ export default class WebsocketService {
                 BaseService.Instance.store.commit("websocketConf/setIdentifier", msg.content);
                 break;
             case "names":
-                console.log(msg.content);
-                
-                BaseService.Instance.store.commit("names/setNames", msg.content);
+                BaseService.Instance.store.commit("names/setNames", JSON.parse(msg.content));
                 break;
             default:
                 break;

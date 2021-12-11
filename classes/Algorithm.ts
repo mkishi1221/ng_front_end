@@ -1,6 +1,6 @@
 export default class Algorithm {
-  keywordType1: string = "";
-  keywordType2: string = "";
+  keyword_type_1: string = "";
+  keyword_type_2: string = "";
   joint: string = "";
 
   constructor(algorithmPart: Partial<Algorithm> = {}) {
@@ -9,24 +9,24 @@ export default class Algorithm {
 
   static testValuesFactoryAllNull() {
     return new Algorithm({
-      keywordType1: "RRyxnRBRNnwwavniNLWZRjRmwMTpnfoB",
-      keywordType2: "VZWIilmIDjbUSjpVmiurWXwMWwrIvotk",
+      keyword_type_1: "RRyxnRBRNnwwavniNLWZRjRmwMTpnfoB",
+      keyword_type_2: "VZWIilmIDjbUSjpVmiurWXwMWwrIvotk",
       joint: "tvVWtsuuTEcRtujeQhehHCIkoUOcOZUY",
     });
   }
 
   static testValuesFactorySomeNull() {
     return new Algorithm({
-      keywordType1: "uzLCjFepJxPfsCNABHtukEWeRFCXaylv",
-      keywordType2: "iUGwYYOuKwOEfqJGSDJrIxGWgZvCSdeq",
+      keyword_type_1: "uzLCjFepJxPfsCNABHtukEWeRFCXaylv",
+      keyword_type_2: "iUGwYYOuKwOEfqJGSDJrIxGWgZvCSdeq",
       joint: "WgOPLmIoNBKSkTiMjJeaaDgkdfQcfYza",
     });
   }
 
   static testValuesFactoryNoneNull() {
     return new Algorithm({
-      keywordType1: "YPMQjuARsmnkZfwLEeNIrbxtAdNqActo",
-      keywordType2: "gOoIuBIREfUJoNgRyJLuxkDJTjFNNsJh",
+      keyword_type_1: "YPMQjuARsmnkZfwLEeNIrbxtAdNqActo",
+      keyword_type_2: "gOoIuBIREfUJoNgRyJLuxkDJTjFNNsJh",
       joint: "hGSZYqsCbeBVufPBbzLKiQpFUGbDXQBb",
     });
   }

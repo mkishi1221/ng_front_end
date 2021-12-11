@@ -6,7 +6,7 @@ export const state = () => {
 }
 
 export const mutations = {
-    setNames(state: any, names: Name[]) {
-        Vue.set(state, "names", names);
+    setNames(state: any, names: any[]) {
+        Vue.set(state, "names", names.map(e => new Name(e)));
     }
 }

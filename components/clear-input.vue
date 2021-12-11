@@ -1,6 +1,6 @@
 <template>
   <input
-    :value="value"
+    v-model="syncedValue"
     class="
       bg-transparent
       focus:outline-none
@@ -14,7 +14,7 @@
 </template>
 
 <script lang='ts'>
-import { Component, Prop, Vue } from 'nuxt-property-decorator';
+import { Component, Prop, PropSync, Vue } from 'nuxt-property-decorator';
 
 @Component({
   name: 'ClearInput',
@@ -22,8 +22,8 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator';
 })
 export default class ClearInput extends Vue {
   // Props
-  @Prop()
-  value!: string | number;
+  @PropSync("value")
+  syncedValue!: string | number;
 
   @Prop({ type: String })
   placeholder!: string;

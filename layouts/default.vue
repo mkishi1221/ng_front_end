@@ -13,7 +13,7 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator';
 import SettingsService from '~/services/settingsService';
 import WebsocketService from '~/services/websocketService';
-import Dexie from "dexie";
+import Dexie from 'dexie';
 
 @Component({
   name: 'DefaultLayout',
@@ -26,18 +26,21 @@ export default class DefaultLayout extends Vue {
   // Hook Callbacks
   async mounted() {
     if (this.$auth.loggedIn) {
-      this.$store.commit(
-        'projectConf/setProjectName',
-        (await SettingsService.getProfile(this.$auth.user!.email as string))[
-          'last_project'
-        ]
+      const profile = await SettingsService.getProfile(
+        this.$auth.user!.email as string
       );
-      WebsocketService.connect({
-        name: this.$auth.user!.email as string,
-        project: this.$store.state.projectConf.projectName,
-      });
-      this.db = new Dexie("backgroundImg");
-      this.db.version(1).stores({ background: "++id,img"});
+      if (!!profile) {
+        this.$store.commit(
+          'projectConf/setProjectName',
+          profile['last_project']
+        );
+        WebsocketService.connect({
+          name: this.$auth.user!.email as string,
+          project: this.$store.state.projectConf.projectName,
+        });
+      }
+      this.db = new Dexie('backgroundImg');
+      this.db.version(1).stores({ background: '++id,img' });
     }
   }
   // Refs
@@ -46,7 +49,7 @@ export default class DefaultLayout extends Vue {
     return this.$store.state.overlay.open;
   }
   get backgroundImg() {
-    if (this.db) return (this.db as any).background.first() ?? "";
+    if (this.db) return (this.db as any).background.first() ?? '';
   }
   // Setters
   // Watchers

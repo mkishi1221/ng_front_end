@@ -5,6 +5,58 @@
         <template v-slot:title>
           drag the components to the form below to create a name template
         </template>
+        <draggable
+          v-model="defaultComponents"
+          class="flex"
+          :sort="false"
+          :group="{ name: 'components', pull: 'clone', put: false }"
+        >
+          <t-chip
+            v-for="(component, i) in defaultComponents"
+            :key="i"
+            :label="component"
+            class="mr-2"
+          />
+        </draggable>
+        <div class="flex mt-4">
+          <div
+            class="flex w-full bg-gray-300 p-4 rounded-xl"
+            style="min-height: 64px"
+          >
+            <draggable
+              class="w-full"
+              style="min-height: 32px"
+              v-model="buildingComponents"
+              group="components"
+            >
+              <t-chip
+                v-for="(component, i) in buildingComponents"
+                :key="i"
+                :label="component"
+                deleteable
+                class="mr-2"
+                @delete="removeFromBuildingComponents(i)"
+              />
+            </draggable>
+          </div>
+          <div
+            @click="addAlgorithm"
+            class="
+              p-4
+              rounded-xl
+              bg-gray-500
+              ml-2
+              text-2xl text-white
+              cursor-pointer
+              flex flex-col
+              justify-center
+              text-center
+            "
+            style="min-height: 64px; min-width: 220px"
+          >
+            <span>add algorithm</span>
+          </div>
+        </div>
       </t-card>
       <t-card>
         <div class="flex">
@@ -30,21 +82,29 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator';
-import { PlusIcon } from 'vue-feather-icons';
 import Algorithm from '~/classes/Algorithm';
 import Theme from '~/helper/Theme';
-import AlgorithmService from '~/services/algorithmService';
-import WebsocketService from '~/services/websocketService';
+import draggable from 'vuedraggable';
 
 @Component({
   name: 'AlgorithmSection',
   components: {
-    PlusIcon,
+    draggable,
   },
 })
 export default class AlgorithmSection extends Vue {
   // Props
   // Data
+  defaultComponents: string[] = [
+    'adjective',
+    'noun',
+    'verb',
+    'prefix',
+    'suffix',
+    'and',
+    'to',
+  ];
+  buildingComponents: string[] = [];
   // Hook Callbacks
   // Refs
   // Getters
@@ -65,13 +125,50 @@ export default class AlgorithmSection extends Vue {
   @Watch('wsConnected')
   async OnProjectChange(change: boolean) {
     if (change) {
-      this.$store.commit(
-        'algorithms/setAlgorithms',
-        await AlgorithmService.getAlgorithms()
-      );
+      this.$store.dispatch('algorithms/setAlgorithms');
     }
   }
   // Logic
+  removeFromBuildingComponents(index: number) {
+    const components = [...this.buildingComponents];
+    // TODO: investigate
+    this.buildingComponents = components
+      .slice(0, index)
+      .concat(components.slice(index + 1, components.length));
+  }
+  addAlgorithm() {
+    const components = [...this.buildingComponents];
+    if (!components.length) return;
+    let alg!: Algorithm;
+    if (
+      components[0] === 'suffix' ||
+      components[components.length - 1] === 'prefix'
+    ) {
+      // TODO: snackbar with error
+      return;
+    }
+    if (components.length === 3) {
+      if (!['and', 'to'].includes(components[1])) {
+        // TODO: snackbar with error
+        return;
+      }
+      alg = new Algorithm({
+        keyword_type_1: components[0],
+        keyword_type_2: components[2],
+        joint: components[1],
+      });
+    } else if ([...this.buildingComponents].length === 2) {
+      alg = new Algorithm({
+        keyword_type_1: components[0],
+        keyword_type_2: components[2],
+        joint: '',
+      });
+    }
+    if (!!alg) {
+      this.$store.dispatch('algorithms/addNewAlgorithm', alg);
+      this.buildingComponents = [];
+    }
+  }
 }
 </script>
 

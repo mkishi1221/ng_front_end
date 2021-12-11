@@ -1,26 +1,26 @@
 <template>
-  <div class="relative inline-block">
-    <t-menu context :menu-entries="menuEntries">
-      <template v-slot:activator>
-        <div
-          class="rounded-md px-6 py-2 max-h-full max-w-max"
-          :class="menuEntries ? 'hover:opacity-75' : ''"
-          :style="chipStyle"
-        >
-          <span v-if="label" :style="textColor" class="select-none">{{
-            label
-          }}</span>
-          <slot v-else name="default" />
-        </div>
-      </template>
-    </t-menu>
+  <div
+    class="rounded-md px-6 py-2 max-h-full max-w-max flex items-center"
+    :class="hover ? 'hover:opacity-75' : ''"
+    :style="chipStyle"
+  >
+    <span v-if="label" :style="textColor" class="select-none">{{ label }}</span>
+    <slot v-else name="default" />
+    <div @click="$emit('delete')">
+      <t-icon
+        v-if="deleteable"
+        icon="mdi-close"
+        size="5"
+        color="text-black"
+        class="ml-2 -mr-2 cursor-pointer"
+      />
+    </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'nuxt-property-decorator';
 import Lumifier from '~/helper/Lumifier';
-import MenuEntry from '~/classes/MenuEntry';
 
 @Component({
   name: 'TChip',
@@ -31,14 +31,17 @@ export default class TChip extends Vue {
   @Prop({ type: String })
   label!: string;
 
-  @Prop({ type: String })
+  @Prop({ type: String, default: '#ffffff' })
   color!: string;
 
   @Prop({ type: Boolean })
   border!: boolean;
 
-  @Prop()
-  menuEntries!: MenuEntry[];
+  @Prop({ type: Boolean, default: false })
+  deleteable!: boolean;
+
+  @Prop({ type: Boolean })
+  hover!: boolean;
 
   // Data
 

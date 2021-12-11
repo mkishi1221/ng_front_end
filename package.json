@@ -21,7 +21,7 @@
     "nuxt-property-decorator": "^2.9.1",
     "randomstring": "^1.2.1",
     "tailwindcss": "^2.2.19",
-    "vue-feather-icons": "^5.1.0",
+    "vuedraggable": "^2.24.3",
     "websocket-ts": "^1.1.1"
   },
   "devDependencies": {
@@ -29,7 +29,6 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/tailwindcss": "^4.2.0",
     "@types/randomstring": "^1.1.8",
-    "@types/vue-feather-icons": "^5.0.2",
     "eslint-config-prettier": "^8.3.0",
     "postcss": "^8.3.11",
     "prettier": "^2.3.2"

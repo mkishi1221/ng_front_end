@@ -18,13 +18,13 @@
       </t-card>
       <t-card>
         <template v-slot:title> available names </template>
-        <div class="flex">
+        <div class="flex flex-wrap">
           <t-chip
             v-for="(name, i) in names"
             :key="i"
             :color="getChipColor()"
-            class="mr-2"
-            :label="name.name"
+            class="m-2"
+            :label="name.domain"
           />
         </div>
       </t-card>
