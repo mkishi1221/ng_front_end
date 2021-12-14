@@ -4,10 +4,10 @@
       v-model="valueSynced"
       :name="`checkbox-${randomId}`"
       type="checkbox"
-      class="text-gray-400 rounded"
+      class="text-black text-opacity-75 rounded"
     />
     <label
-      class="ml-2 text-slate-800 dark:text-white cursor-pointer select-none"
+      class="ml-2 text-black text-opacity-75 dark:text-white cursor-pointer select-none"
       :for="`checkbox-${randomId}`"
       @click="valueSynced = !valueSynced"
       >{{ label }}</label

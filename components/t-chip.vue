@@ -11,7 +11,7 @@
         v-if="deleteable"
         icon="mdi-close"
         size="5"
-        color="text-darkGray"
+        color="text-black text-opacity-75"
         class="ml-3 -mr-3 cursor-pointer"
       />
     </div>

@@ -4,7 +4,7 @@
     class="
       bg-transparent
       focus:outline-none
-      text-darkGray
+      text-black text-opacity-75
       dark:placeholder-white
       text-xs
     "

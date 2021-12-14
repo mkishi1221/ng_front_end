@@ -14,24 +14,24 @@
     "
   >
     <div class="flex flex-col">
-      <span class="text[#3C3C3C] dark:text-white text-2xl ml-8 font-bold"
+      <span class="text-black text-opacity-90 dark:text-white text-2xl ml-8 font-bold tracking-normal"
         >identity to brand</span
       >
       <clear-input
         :placeholder="projectName"
-        class="ml-8 text-darkGray"
+        class="ml-8 text-black text-opacity-75"
         :change="setProjectName"
       />
     </div>
     <div
-      class="text-darkGray dark:text-white flex justify-evenly items-center font-thin text-sm"
+      class="text-black text-opacity-75 dark:text-white flex justify-evenly items-center font-light text-sm tracking-wider"
       style="width: 60vw"
     >
       <div class="cursor-pointer hover:underline">features</div>
       <div class="cursor-pointer hover:underline">pricing</div>
       <div class="cursor-pointer hover:underline">about us</div>
       <div
-        class="rounded max-h-full shadow-lg p-2 cursor-pointer font-bold text-white px-4"
+        class="rounded max-h-full shadow-lg p-2 cursor-pointer font-bold text-white px-4 tracking-normal"
         style="background-color: #e06d41"
       >
         try premium

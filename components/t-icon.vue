@@ -33,7 +33,7 @@ export default class TIcon extends Vue {
   @Prop({ type: Boolean, default: false })
   bouncing!: boolean;
 
-  @Prop({ type: String, default: "text-darkGray" })
+  @Prop({ type: String, default: "text-black text-opacity-75" })
   color!: string;
   // Data
   // Hook Callbacks
