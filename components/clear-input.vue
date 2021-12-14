@@ -4,8 +4,8 @@
     class="
       bg-transparent
       focus:outline-none
-      text-white
-      placeholder-white
+      text-darkGray
+      dark:placeholder-white
       text-xs
     "
     :placeholder="placeholder"

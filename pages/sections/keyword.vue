@@ -9,7 +9,7 @@
             <template v-slot:activator>
               <t-chip
                 :key="i"
-                class="mt-2 mr-2"
+                class="mt-3 mr-3"
                 color="#ffffff"
                 :label="k.keyword"
               />
@@ -31,7 +31,7 @@
             <template v-slot:activator>
               <t-chip
                 :key="i"
-                class="mt-2 mr-2"
+                class="mt-3 mr-3"
                 :color="colors.blacklisted"
                 :label="k.keyword"
               />

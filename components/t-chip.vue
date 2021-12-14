@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-md px-6 py-2 max-h-full max-w-max flex items-center"
+    class="rounded-md px-3 py-1 max-h-full max-w-max flex items-center"
     :class="hover ? 'hover:opacity-75' : ''"
     :style="chipStyle"
   >
@@ -11,8 +11,8 @@
         v-if="deleteable"
         icon="mdi-close"
         size="5"
-        color="text-black"
-        class="ml-2 -mr-2 cursor-pointer"
+        color="text-darkGray"
+        class="ml-3 -mr-3 cursor-pointer"
       />
     </div>
   </div>

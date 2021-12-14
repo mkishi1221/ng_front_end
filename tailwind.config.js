@@ -13,12 +13,12 @@ module.exports = {
         cardTitle: "#4b4b4b",
         cardDark: "#323232",
         canvas: "#e0e0e0",
-        canvasDark: "#222222"
-      }
+        canvasDark: "#222222",
+      },
     },
     fontFamily: {
-      sans: ['"Helvetica Neue"', 'sans-serif']
-    }
+      sans: "Helvetica"
+    },
   },
   variants: {
     extend: {},

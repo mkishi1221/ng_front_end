@@ -15,7 +15,7 @@
             v-for="(component, i) in defaultComponents"
             :key="i"
             :label="component"
-            class="mr-2"
+            class="mr-3"
           />
         </draggable>
         <div class="flex mt-4">
@@ -34,7 +34,7 @@
                 :key="i"
                 :label="component"
                 deleteable
-                class="mr-2"
+                class="mr-3"
                 @delete="removeFromBuildingComponents(i)"
               />
             </draggable>
@@ -64,9 +64,9 @@
             v-for="(algorithm, i) in algorithms"
             :key="i"
             :color="colors.backgroundChip"
-            class="mr-2"
+            class="mr-3"
           >
-            <div class="flex items-center">
+            <div class="flex items-center, py-1">
               <t-chip :label="algorithm.keyword_type_1" color="#ffffffaa" />
               <span class="mx-4 text-white select-none">{{
                 algorithm.joint

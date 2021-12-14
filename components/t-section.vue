@@ -1,13 +1,13 @@
 <template>
-  <div class="container mx-auto px-14 xl:px-0 pt-2">
+  <div class="container mx-auto px-14 xl:px-6 pt-2">
     <div class="flex justify-between items-center">
-      <span class="text-2xl text-black dark:text-white">{{ title }}</span>
+      <span class="text-xl text-darkGray dark:text-white font-bold">{{ title }}</span>
       <div class="relative inline-block">
         <t-menu>
           <template v-slot:activator>
             <t-icon
               icon="mdi-dots-horizontal"
-              class="cursor-pointer text-black dark:text-white"
+              class="cursor-pointer dark:text-white"
               size="12"
             />
           </template>

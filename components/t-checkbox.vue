@@ -7,7 +7,7 @@
       class="text-gray-400 rounded"
     />
     <label
-      class="ml-2 text-black dark:text-white cursor-pointer select-none"
+      class="ml-2 text-slate-800 dark:text-white cursor-pointer select-none"
       :for="`checkbox-${randomId}`"
       @click="valueSynced = !valueSynced"
       >{{ label }}</label
