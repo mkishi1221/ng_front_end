@@ -19,7 +19,7 @@
         </draggable>
         <div class="flex">
           <div
-            class="flex w-full bg-gray-300 rounded-xl"
+            class="flex w-full bg-canvas rounded-xl"
             style="min-height: 64px"
           >
             <draggable

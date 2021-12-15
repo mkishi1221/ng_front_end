@@ -3,10 +3,10 @@
     <template v-slot:cards>
       <t-card>
         <template v-slot:title>search through text</template>
-        <t-input class="w-full" placeholder="find" />
+        <t-input class="w-full" placeholder="find keywords" />
       </t-card>
       <t-card>
-        <t-textarea :change="addNewKeywords" />
+        <t-textarea class="border-0 placeholder-gray-400" :change="addNewKeywords" placeholder="add some text" />
       </t-card>
     </template>
   </t-section>
