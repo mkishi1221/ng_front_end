@@ -66,7 +66,7 @@
             :color="colors.backgroundChip"
             class="mr-3"
           >
-            <div class="flex items-center, py-1">
+            <div class="flex items-center py-1">
               <t-chip :label="algorithm.keyword_type_1" color="#ffffffaa" />
               <span class="mx-4 text-white select-none">{{
                 algorithm.joint
