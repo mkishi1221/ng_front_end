@@ -4,12 +4,11 @@
       <t-card class="mt-2">
         <template v-slot:title> filter keywords </template>
         <t-input :value.sync="filter" placeholder="Search for something" />
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap gap-3">
           <t-menu context v-for="(k, i) in keywords" :key="i">
             <template v-slot:activator>
               <t-chip
                 :key="i"
-                class="mt-3 mr-3"
                 color="#ffffff"
                 :label="k.keyword"
               />
@@ -26,12 +25,11 @@
       </t-card>
       <t-card>
         <template v-slot:title> blacklisted keywords </template>
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap gap-3">
           <t-menu context v-for="(k, i) in blacklistedKeywords" :key="i">
             <template v-slot:activator>
               <t-chip
                 :key="i"
-                class="mt-3 mr-3"
                 :color="colors.blacklisted"
                 :label="k.keyword"
               />

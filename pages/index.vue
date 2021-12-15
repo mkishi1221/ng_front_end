@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col">
     <raw-input-section />
-    <keyword-section class="mt-16" />
-    <algorithm-section class="mt-16" />
-    <name-section class="mt-16" />
-    <domain-section class="mt-16 mb-8" />
+    <keyword-section class="mt-10" />
+    <algorithm-section class="mt-10" />
+    <name-section class="mt-10" />
+    <domain-section class="mt-10 mb-20" />
   </div>
 </template>
 

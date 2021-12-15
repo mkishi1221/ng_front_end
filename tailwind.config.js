@@ -14,10 +14,11 @@ module.exports = {
         cardDark: "#323232",
         canvas: "#e0e0e0",
         canvasDark: "#222222",
+        darkBlueNew: "#323B4A",
       },
     },
     fontFamily: {
-      sans: ["Helvetica", "sans-serif"]
+      sans: ["Arial", "sans-serif"]
     },
   },
   variants: {

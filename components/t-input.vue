@@ -6,7 +6,7 @@
       rounded-lg
       p-2
       focus:outline-none focus:ring-2 focus:ring-gray-200
-      placeholder-gray-500
+      placeholder-gray-300
     "
     :placeholder="placeholder"
     @change="change"

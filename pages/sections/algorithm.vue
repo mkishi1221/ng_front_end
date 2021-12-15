@@ -7,7 +7,7 @@
         </template>
         <draggable
           v-model="defaultComponents"
-          class="flex"
+          class="flex flex-wrap gap-3"
           :sort="false"
           :group="{ name: 'components', pull: 'clone', put: false }"
         >
@@ -15,12 +15,11 @@
             v-for="(component, i) in defaultComponents"
             :key="i"
             :label="component"
-            class="mr-3"
           />
         </draggable>
-        <div class="flex mt-4">
+        <div class="flex">
           <div
-            class="flex w-full bg-gray-300 p-4 rounded-xl"
+            class="flex w-full bg-gray-300 rounded-xl"
             style="min-height: 64px"
           >
             <draggable
@@ -34,7 +33,6 @@
                 :key="i"
                 :label="component"
                 deleteable
-                class="mr-3"
                 @delete="removeFromBuildingComponents(i)"
               />
             </draggable>
@@ -42,29 +40,29 @@
           <div
             @click="addAlgorithm"
             class="
+              bg-darkBlueNew
               p-4
               rounded-xl
-              bg-gray-500
               ml-2
-              text-2xl text-white
+              text-base text-white
               cursor-pointer
               flex flex-col
               justify-center
               text-center
+              font-bold
             "
-            style="min-height: 64px; min-width: 220px"
+            style="min-height: 64px; min-width: 150px"
           >
             <span>add algorithm</span>
           </div>
         </div>
       </t-card>
       <t-card>
-        <div class="flex">
+        <div class="flex flex-wrap gap-3">
           <t-chip
             v-for="(algorithm, i) in algorithms"
             :key="i"
             :color="colors.backgroundChip"
-            class="mr-3"
           >
             <div class="flex items-center py-1">
               <t-chip :label="algorithm.keyword_type_1" color="#ffffffaa" />
