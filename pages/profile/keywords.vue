@@ -11,7 +11,7 @@
                 <div class="text-gray-500">03/06</div>
                 <h1 class="text-xl">What other keywords can you relate to?</h1>
                 <div class="text-gray-500">You can select a few</div>
-                <div class="flex flex-wrap gap-2 max-h-72 overflow-y-scroll">
+                <div class="flex flex-wrap gap-2 max-h-72 overflow-y-scroll md:overflow-auto">
                     <chip v-for="(ct, i) in chipTexts" :key="i" active-icon @click="addChip(ct)">
                         {{ ct }}
                     </chip>

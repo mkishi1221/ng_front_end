@@ -11,7 +11,7 @@
                 <div class="text-gray-500">05/06</div>
                 <h1 class="text-xl">Add sentences:</h1>
                 <div class="text-gray-500">Generate keywords from any text. Paste anything here that you think could be relevant:</div>
-                <text-area v-model="sentences" class="mt-4 w-3/4"></text-area>
+                <text-area v-model="sentences" class="mt-4"></text-area>
             </div>
             <div class="h-24" />
             <profile-buttons :next-step="nextStep" :show-skip="showSkip" />

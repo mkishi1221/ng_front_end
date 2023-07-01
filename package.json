@@ -15,5 +15,8 @@
     "nuxt": "^3.6.0",
     "nuxt-icon": "^0.4.1",
     "typescript": "latest"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11"
   }
 }
