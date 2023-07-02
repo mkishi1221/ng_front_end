@@ -27,6 +27,9 @@
 
 <script setup lang="ts">
 import ProfileButtons from "./components/profileButtons.vue";
+import { useProfileStore } from "~/stores/profile";
+
+const profileStore = useProfileStore();
 
 const showSkip = ref(true);
 const chips = ref([] as string[]);
@@ -47,6 +50,7 @@ function addChip(value: string) {
     } else {
         chips.value = chips.value.concat(value);
     }
+    profileStore.mutateCategory(value);
 }
 
 function toggleAddMore() {
