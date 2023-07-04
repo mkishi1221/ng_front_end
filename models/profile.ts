@@ -5,7 +5,6 @@ export default class Profile {
     tlds!: string[];
     sentence!: string;
 
-
     constructor(part: Partial<Profile> = {}) {
         Object.assign(this, part);
     }

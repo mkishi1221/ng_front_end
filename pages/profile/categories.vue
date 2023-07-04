@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen items-end md:items-center justify-center">
+    <div class="flex h-screen-app-bar items-end md:items-center justify-center">
         <div class="bg-white w-screen md:w-[700px] lg:w-[1000px] h-4/5 md:h-min rounded-3xl p-8 flex flex-col justify-center">
             <div class="h-24" />
             <div class="flex flex-col gap-4">
