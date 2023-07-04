@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import Profile from "~/models/profile";
 import ProfileButtons from "./components/profileButtons.vue";
 import { useProfileStore } from "~/stores/profile";
 
@@ -39,6 +40,11 @@ const addMoreChipText = ref("");
 const chipTexts = ref([
     "service", "manufacturing", "shop", "entertainment", "consulting", "startup"
 ]);
+
+useAsyncData(async () => {
+    // TODO: backend call to fetch profile
+    profileStore.init(new Profile().toJSON());
+})
 
 watch(chips, (newVal) => {
     showSkip.value = newVal.length == 0;

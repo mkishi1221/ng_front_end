@@ -4,14 +4,14 @@
             <nuxt-link to="/">
                 <img src="/forehuman_logo.svg" />
             </nuxt-link>
-            <img v-if="data" @click="showMenu = !showMenu" :src="userImage" class="w-12 h-12 rounded-full cursor-pointer" />
+            <img v-if="data" @click.stop="showMenu = !showMenu" :src="userImage" class="w-12 h-12 rounded-full cursor-pointer" />
         </div>
     </div>
     <div v-if="showMenu" class="absolute right-2 top-16 p-4 flex flex-col gap-2 bg-white border border-black rounded-lg w-40">
-        <div @click="navigateToProfile" class="flex items-center gap-2 cursor-pointer">
+        <nuxt-link to="/profile/categories" class="flex items-center gap-2 cursor-pointer">
             Profile <Icon name="mdi:account" />
-        </div>
-        <div @click="signOut" class="flex items-center gap-2 cursor-pointer">
+        </nuxt-link>
+        <div @click="() => signOut()" class="flex items-center gap-2 cursor-pointer">
             Sign out <Icon name="mdi:logout" />
         </div>
     </div>
@@ -25,8 +25,12 @@ const showMenu = ref(false);
 
 const userImage = computed(() => data.value?.user?.image ?? "");
 
-function navigateToProfile() {
-    useRouter().push("/profile/categories");
-}
+onMounted(() => {
+    document.addEventListener("click", () => {
+        if (showMenu.value) {
+            showMenu.value = false;
+        }
+    });
+})
 
 </script>

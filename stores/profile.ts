@@ -4,6 +4,10 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 export const useProfileStore = defineStore("profiles", () => {
     const profile = ref<Profile>();
 
+    function init(p: any) {
+        if (!profile.value) profile.value = p;
+    }
+
     function mutateCategory(category: string) {
         if (profile.value!.categories.includes(category)) {
             profile.value!.categories = profile.value!.categories.filter(c => c !== category);
@@ -40,7 +44,7 @@ export const useProfileStore = defineStore("profiles", () => {
         profile.value!.sentence = sentence;
     }
 
-    return { profile, mutateCategory, mutateDescriber, mutateKeyword, mutateTld, setSentence };
+    return { profile, init, mutateCategory, mutateDescriber, mutateKeyword, mutateTld, setSentence };
 });
 
 if (import.meta.hot) {
